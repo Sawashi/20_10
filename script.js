@@ -6426,3 +6426,44 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
   },{"../cursor":"LMRJ","./grid":"toX6","../utils":"MgTz"}]},{},["C3Xv"], null)
+  const h2Element = document.getElementById("myH2");
+  const cardElement = document.getElementById("myCard");
+  const closeCardButton = document.getElementById("closeCard");
+  const imgWish = document.getElementById("randomImgResult");
+  const wish = document.getElementById("randomWishResult");
+  const wishArr=["Chúc bạn ngày 20/10 vui vẻ thật nhiều sức khỏe, niềm vui và hạnh phúc!", 
+                "Dành tặng bạn những bông hoa tươi thắm nhất của ngày hôm nay!",
+                "Chúc bạn mãi xinh đẹp, luôn giỏi việc nước, đảm việc nhà và hăng hái trong mọi cuộc chơi",
+                "Chúc các bạn có một ngày 20 tháng 10 ngập tràn niềm vui và hạnh phúc",
+                "Chúc các chị em luôn xinh đẹp, tươi trẻ và nhận được thật nhiều quà nhé!",
+                "Nhân ngày phụ nữ Việt Nam, chúc bạn mạnh khỏe , xinh đẹp, nhiều năng lượng và luôn yêu đời. Chúc mừng ngày 20/10.",
+                "Chúc bạn một ngày 20/10 tràn đầy niềm vui và hạnh phúc."
+]
+  const cardArr=["c1.jpg", "c2.jpg", "c3.jpg", "c4.jpg", "c5.jpg"]
+  h2Element.addEventListener("click", () => {
+    // Apply a blur to everything except the card
+    document.getElementById("contentBox").classList.add("blur");
+    // Display the card
+    cardElement.style.display = "block";
+    setTimeout(() => {
+      cardElement.classList.add("show-card");
+      cardElement.classList.add("unblur")
+    }, 0); // Delay adding the class to ensure the fade-in effect
+    const randomWishIndex = Math.floor(Math.random() * wishArr.length);
+    const randomCardIndex = Math.floor(Math.random() * cardArr.length);
+    const newPath="./card/"+cardArr[randomCardIndex];
+    imgWish.src=newPath;
+    wish.textContent=wishArr[randomWishIndex];
+  });
+  
+  closeCardButton.addEventListener("click", () => {
+    // Close the card
+    cardElement.classList.remove("show-card");
+    setTimeout(() => {
+      cardElement.style.display = "none";
+    }, 300); // Adjust the time to match the transition duration
+  
+    // Remove the blur effect
+    document.getElementById("contentBox").classList.remove("blur");
+  });
+  
